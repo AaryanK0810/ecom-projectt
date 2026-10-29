@@ -1,0 +1,8 @@
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Search products..."
+    [value]="searchText()"
+    (input)="onSearch($any($event.target).value)"
+  >
+</div>

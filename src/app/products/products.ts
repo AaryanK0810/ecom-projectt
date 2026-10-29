@@ -1,12 +1,13 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- 1. Import this
+
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ProductService } from '../product-service';
 import { Product } from '../product';
-
+import { Search } from '../search/search';
+import { ProductCard } from '../product-card/product-card';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule], // <-- 2. Add it here
+  imports: [Search , ProductCard],
   templateUrl: './products.html',
   styleUrl: './products.css'
 })
@@ -16,18 +17,27 @@ export class Products implements OnInit {
   products = signal<Product[]>([]);
   loading = signal(true);
   error = signal('');
+  searchText = signal('');
+
+  filteredProducts = computed(() => {
+    const search = this.searchText().trim().toLowerCase();
+
+    return this.products().filter(product =>
+      product.title.toLowerCase().includes(search)
+    );
+  });
+
+  onSearchChanged(value: string): void {
+    this.searchText.set(value);
+  }
 
   ngOnInit(): void {
-    console.log('Products component initialized');
-
     this.productService.getProducts().subscribe({
       next: (response) => {
-        console.log('API response:', response);
         this.products.set(response.products);
         this.loading.set(false);
       },
-      error: (error) => {
-        console.error('API request failed:', error);
+      error: () => {
         this.error.set('Failed to load products. Please try again.');
         this.loading.set(false);
       }
