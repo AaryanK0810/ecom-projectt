@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+
+<header class="navbar">
+  <a routerLink="/" class="brand">Product Store</a>
+
+  <nav>
+    <a routerLink="/">Home</a>
+
+    <a routerLink="/cart" class="cart-link">
+      <span>Cart</span>
+      <span class="cart-count">{{ totalItems() }}</span>
+    </a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>

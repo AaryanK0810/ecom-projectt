@@ -1,6 +1,6 @@
-import { Component , input } from '@angular/core';
+import { Component , input , inject } from '@angular/core';
 import { Product } from '../product';
-
+import { CartService } from '../cart-service';
 @Component({
   standalone : true,
   imports: [],
@@ -10,4 +10,10 @@ import { Product } from '../product';
 })
 export class ProductCard {
   product = input.required<Product>()
+
+  private cartService = inject(CartService);
+
+  addToCart() : void {
+    this.cartService.addToCart(this.product())
+  }
 }

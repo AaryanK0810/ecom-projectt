@@ -1,0 +1,71 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 32px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar a {
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar .brand {
+  font-size: 22px;
+  color: #2563eb;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar .cart-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: #2563eb;
+  color: white;
+  font-size: 12px;
+}
+
+main {
+  min-height: calc(100vh - 65px);
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 16px;
+  }
+
+  .navbar nav {
+    gap: 16px;
+  }
+
+  .navbar .brand {
+    font-size: 18px;
+  }
+}
